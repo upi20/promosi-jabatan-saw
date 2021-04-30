@@ -10,6 +10,7 @@ $(() => {
 	const addRow = (data) => {
 		let row = [
 			data.nama,
+			data.keterangan,
 			`
             <div id="btn-ubah-${data.id}">
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalUbah" data-id="${data.id}" data-nama="${data.nama}" onclick="Ubah(this)">
@@ -32,10 +33,11 @@ $(() => {
 
 		$($table.row(row).node()).attr('data-id', id);
 		$table.cell(row, 0).data(data.nama);
+		$table.cell(row, 1).data(data.keterangan);
 		let btn = $(`#btn-ubah-${data.id}`);
 		btn.html(`
         <div id="btn-ubah-${data.id}">
-        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalUbah" data-id="${data.id}" data-nama="${data.nama}" onclick="Ubah(this)">
+        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalUbah" data-id="${data.id}" data-nama="${data.nama}" data-keterangan="${data.keterangan}" onclick="Ubah(this)">
             <i class="fa fa-edit"></i> Ubah
         </button>
         <button class="btn btn-danger btn-sm" onclick="Hapus(${data.id})">
@@ -55,15 +57,15 @@ $(() => {
 		ev.preventDefault();
 
 		let nama = $("#nama").val();
+		let keterangan = $("#keterangan").val();
 
-		window.apiClient.santriKelas.insert(nama)
+		window.apiClient.divisiData.insert(nama, keterangan)
 			.done((data) => {
-				$.doneMessage('Berhasil ditambahkan.', 'Santri Kelas')
+				$.doneMessage('Berhasil ditambahkan.', 'Data Divisi')
 				addRow(data)
-
 			})
 			.fail(($xhr) => {
-				$.failMessage('Gagal ditambahkan. data mungkin sudah ada.', 'Santri Kelas')
+				$.failMessage('Gagal ditambahkan. data mungkin sudah ada.', 'Data Divisi')
 			}).
 			always(() => {
 				$('#modalTambah').modal('toggle')
@@ -75,17 +77,18 @@ $(() => {
 	$('#form-ubah').submit((ev) => {
 		ev.preventDefault();
 
-		let nama = $("#nama-ubah").val();
 		let id = $("#id-ubah").val();
+		let nama = $("#nama-ubah").val();
+		let keterangan = $("#keterangan-ubah").val();
 
-		window.apiClient.santriKelas.update(id, nama)
+		window.apiClient.divisiData.update(id, nama, keterangan)
 			.done((data) => {
-				$.doneMessage('Berhasil diubah.', 'Santri Kelas')
+				$.doneMessage('Berhasil diubah.', 'Data Divisi')
 				editRow(id, data)
 
 			})
 			.fail(($xhr) => {
-				$.failMessage('Gagal diubah. data mungkin sudah ada.', 'Santri Kelas')
+				$.failMessage('Gagal diubah. data mungkin sudah ada.', 'Data Divisi')
 			}).
 			always(() => {
 				$('#modalUbah').modal('toggle')
@@ -96,14 +99,14 @@ $(() => {
 	$('#OkCheck').click(() => {
 
 		let id = $("#idCheck").val()
-		window.apiClient.santriKelas.delete(id)
+		window.apiClient.divisiData.delete(id)
 			.done((data) => {
-				$.doneMessage('Berhasil dihapus.', 'Santri Kelas')
+				$.doneMessage('Berhasil dihapus.', 'Data Divisi')
 				deleteRow(id)
 
 			})
 			.fail(($xhr) => {
-				$.failMessage('Gagal dihapus.', 'Santri Kelas')
+				$.failMessage('Gagal dihapus.', 'Data Divisi')
 			}).
 			always(() => {
 				$('#ModalCheck').modal('toggle')
@@ -124,4 +127,5 @@ const Hapus = (id) => {
 const Ubah = (data) => {
 	$("#id-ubah").val(data.dataset.id);
 	$("#nama-ubah").val(data.dataset.nama);
+	$("#keterangan-ubah").val(data.dataset.keterangan);
 }

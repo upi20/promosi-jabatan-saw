@@ -18,21 +18,21 @@ class Data extends Render_Controller
 	public function index()
 	{
 		// Page Settings
-		$this->title = 'Santri Kelas';
-		$this->content = 'santri-kelas';
-		$this->navigation = ['santri', 'Kelas'];
+		$this->title = 'Divisi Data';
+		$this->content = 'divisi-data';
+		$this->navigation = ['Divisi', 'Data'];
 		$this->plugins = ['datatables'];
 
 		// Breadcrumb setting
 		$this->breadcrumb_1 = 'Dashboard';
 		$this->breadcrumb_1_url = base_url() . 'dashboard';
-		$this->breadcrumb_2 = 'Santri';
+		$this->breadcrumb_2 = 'Divisi';
 		$this->breadcrumb_2_url = '#';
-		$this->breadcrumb_3 = 'Kelas';
-		$this->breadcrumb_3_url = '#';
+		$this->breadcrumb_3 = 'Data';
+		$this->breadcrumb_3_url = 'divisi/data';
 
 		// // Send data to view
-		$this->data['Kelas'] = $this->Kelas->getData();
+		$this->data['divisi'] = $this->Data->getData();
 		$this->render();
 	}
 
@@ -41,7 +41,7 @@ class Data extends Render_Controller
 	{
 		$id = $this->input->post('id');
 
-		$exe = $this->Kelas->delete($id);
+		$exe = $this->Data->delete($id);
 
 		$this->output_json(
 			[
@@ -54,11 +54,13 @@ class Data extends Render_Controller
 	public function insert()
 	{
 		$nama = $this->input->post('nama');
-		$exe = $this->Kelas->insert($nama);
+		$keterangan = $this->input->post('keterangan');
+		$exe = $this->Data->insert($nama, $keterangan);
 		$this->output_json(
 			[
 				'id' => $exe['id'],
-				'nama' => $nama
+				'nama' => $nama,
+				'keterangan' => $keterangan
 			]
 		);
 	}
@@ -68,12 +70,14 @@ class Data extends Render_Controller
 	{
 		$id = $this->input->post('id');
 		$nama = $this->input->post('nama');
-		$exe = $this->Kelas->update($id, $nama);
+		$keterangan = $this->input->post('keterangan');
+		$exe = $this->Data->update($id, $nama, $keterangan);
 
 		$this->output_json(
 			[
 				'id' => $id,
 				'nama' => $nama,
+				'keterangan' => $keterangan
 			]
 		);
 	}

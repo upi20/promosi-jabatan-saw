@@ -550,8 +550,41 @@ $(() => {
 					}
 				})
 			}
-		}
-
+		},
+		divisiData: {
+			delete(id) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>divisi/data/delete',
+					data:
+					{
+						id: id
+					}
+				})
+			}, insert(nama, keterangan) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>divisi/data/insert',
+					data:
+					{
+						nama: nama,
+						keterangan: keterangan
+					}
+				})
+			},
+			update(id, nama, keterangan) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>divisi/data/update',
+					data:
+					{
+						id: id,
+						nama: nama,
+						keterangan: keterangan
+					}
+				})
+			},
+		},
 
 	}
 
