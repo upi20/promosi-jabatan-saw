@@ -4,25 +4,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Level extends Render_Controller
 {
 
-
 	public function index()
 	{
 		// Page Settings
-		$this->title 					= 'Pengaturan Level';
-		$this->content 					= 'pengaturan-level';
-		$this->navigation 				= ['Pengaturan', 'Level'];
-		$this->plugins 					= ['datatables'];
+		$this->title = 'Pengaturan Level';
+		$this->content = 'pengaturan-level';
+		$this->navigation = ['Pengaturan', 'Level'];
+		$this->plugins = ['datatables'];
 
 		// Breadcrumb setting
-		$this->breadcrumb_1 			= 'Dashboard';
-		$this->breadcrumb_1_url 		= base_url() . 'dashboard';
-		$this->breadcrumb_2 			= 'Pengaturan';
-		$this->breadcrumb_2_url 		= '#';
-		$this->breadcrumb_3 			= 'Level';
-		$this->breadcrumb_3_url 		= '#';
+		$this->breadcrumb_1 = 'Dashboard';
+		$this->breadcrumb_1_url = base_url() . 'dashboard';
+		$this->breadcrumb_2 = 'Pengaturan';
+		$this->breadcrumb_2_url = '#';
+		$this->breadcrumb_3 = 'Level';
+		$this->breadcrumb_3_url = '#';
 
 		// Send data to view
-		$this->data['records'] 			= $this->level->getAllData();
+		$this->data['records'] = $this->level->getAllData();
 
 		$this->render();
 	}
@@ -31,16 +30,16 @@ class Level extends Render_Controller
 	// Get data detail
 	public function getDataDetail()
 	{
-		$id 							= $this->input->post('id');
+		$id = $this->input->post('id');
 
-		$exe 							= $this->level->getDataDetail($id);
+		$exe = $this->level->getDataDetail($id);
 
 		$this->output_json(
 			[
-				'id' 			=> $exe['lev_id'],
-				'nama' 			=> $exe['lev_nama'],
-				'keterangan' 	=> $exe['lev_keterangan'],
-				'status' 		=> $exe['lev_status'],
+				'id' => $exe['lev_id'],
+				'nama' => $exe['lev_nama'],
+				'keterangan' => $exe['lev_keterangan'],
+				'status' => $exe['lev_status'],
 			]
 		);
 	}
@@ -49,18 +48,18 @@ class Level extends Render_Controller
 	// Insert data
 	public function insert()
 	{
-		$nama 							= $this->input->post('nama');
-		$keterangan 					= $this->input->post('keterangan');
-		$status 						= $this->input->post('status');
+		$nama = $this->input->post('nama');
+		$keterangan = $this->input->post('keterangan');
+		$status = $this->input->post('status');
 
-		$exe 							= $this->level->insert($nama, $keterangan, $status);
+		$exe = $this->level->insert($nama, $keterangan, $status);
 
 		$this->output_json(
 			[
-				'id' 			=> $exe,
-				'nama' 			=> $nama,
-				'keterangan' 	=> $keterangan,
-				'status' 		=> $status,
+				'id' => $exe,
+				'nama' => $nama,
+				'keterangan' => $keterangan,
+				'status' => $status,
 			]
 		);
 	}
@@ -69,19 +68,19 @@ class Level extends Render_Controller
 	// Update data
 	public function update()
 	{
-		$id 							= $this->input->post('id');
-		$nama 							= $this->input->post('nama');
-		$keterangan 					= $this->input->post('keterangan');
-		$status 						= $this->input->post('status');
+		$id = $this->input->post('id');
+		$nama = $this->input->post('nama');
+		$keterangan = $this->input->post('keterangan');
+		$status = $this->input->post('status');
 
-		$exe 							= $this->level->update($id, $nama, $keterangan, $status);
+		$exe = $this->level->update($id, $nama, $keterangan, $status);
 
 		$this->output_json(
 			[
-				'id' 			=> $id,
-				'nama' 			=> $nama,
-				'keterangan' 	=> $keterangan,
-				'status' 		=> $status,
+				'id' => $id,
+				'nama' => $nama,
+				'keterangan' => $keterangan,
+				'status' => $status,
 			]
 		);
 	}
@@ -90,13 +89,12 @@ class Level extends Render_Controller
 	// Delete data
 	public function delete()
 	{
-		$id 							= $this->input->post('id');
+		$id = $this->input->post('id');
 
-		$exe 							= $this->level->delete($id);
-
+		$exe = $this->level->delete($id);
 		$this->output_json(
 			[
-				'id' 			=> $id
+				'id' => $id
 			]
 		);
 	}
