@@ -220,6 +220,50 @@ $(() => {
 			},
 
 		},
+		pengaturanAplikasi: {
+			app_name(value) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>pengaturan/aplikasi/app_name',
+					data:
+					{
+						value: value
+					}
+				})
+			},
+			copyright(value) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>pengaturan/aplikasi/copyright',
+					data:
+					{
+						value: value
+					}
+				})
+			},
+			page_setting(value) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>pengaturan/aplikasi/page_setting',
+					data:
+					{
+						value: value
+					}
+				})
+			},
+			template_type(value) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>pengaturan/aplikasi/template_type',
+					data:
+					{
+						value: value
+					}
+				})
+			}
+
+
+		},
 		format:
 		{
 
@@ -527,7 +571,8 @@ $(() => {
 					}
 				})
 			},
-		}, perizinanIzin: {
+		},
+		perizinanIzin: {
 			insert(id_santri, tanggal_izin, tanggal_selesai, keterangan) {
 				return $.ajax({
 					method: 'post',
@@ -584,7 +629,7 @@ $(() => {
 					}
 				})
 			},
-		},
+		}
 
 	}
 

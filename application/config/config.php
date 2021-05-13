@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/aplikasi/kampus/UAS_SPK-2113191079-Isep_Lutpi_Nur/';
+$config['base_url'] = 'http://localhost/aplikasi/kampus/SPK-Metode-SAW/';
 
 /*
 |--------------------------------------------------------------------------

@@ -1,3 +1,19 @@
-laporan izin
-validasi input izin tanggal izin tidak boleh lebih dahulu dari tanggal kembali
-fitur kembali
+1. Admin: Menginput data karyawan yang akan dipromosikan kemudian dikunci
+2. Admin: Input nilai-nilai dari karyawan kemudian dikunci
+3. Manajer: Menerbitkan pengumuman hasil dari perhitungan kemudian dikunci
+4. Manajer: Mereset Hasil perhitungan dan pengumuman.
+
+Menu Manajer
+Input nilai
+Perhitungan SPK
+
+1. Buat table pengaturan untuk mengetahui kunci input nilai perhitungan yang dikunci
+	a. struktur table
+		id, nama, nilai
+2. Buat table nilai
+	b. struktur table
+		id, id_user, no_kriteria(1,2,3)
+3. Buat menu dan fungsi untuk menginputkan nilai
+4. Buat fungsi modular untuk perhitungan spk supaya bisa digunakan berkali kali di pengumuman dan perhitungan Manajer
+5. buat fungsi kunci untuk beberapa menu tadi.
+6. Buat dashboard untuk 3 level, administrator, karyawan dan Manajer.

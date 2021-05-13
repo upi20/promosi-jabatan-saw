@@ -95,12 +95,26 @@ class Render_Controller extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-
 		$this->app_name 		= $this->config->item('app_name');
 		$this->copyright 		= $this->config->item('copyright');
 		$this->page_setting 	= $this->config->item('page_setting');
 		$this->template_type 	= $this->config->item('template_type');
 
+		try {
+			$query = $this->db->query("SELECT nilai FROM pengaturan WHERE nama='app_name'");
+			if ($query->row_array()) $this->app_name = $query->row_array()['nilai'];
+
+			$query = $this->db->query("SELECT nilai FROM pengaturan WHERE nama='copyright'");
+			if ($query->row_array()) $this->copyright = $query->row_array()['nilai'];
+
+			$query = $this->db->query("SELECT nilai FROM pengaturan WHERE nama='page_setting'");
+			if ($query->row_array()) $this->page_setting = $query->row_array()['nilai'];
+
+			$query = $this->db->query("SELECT nilai FROM pengaturan WHERE nama='template_type'");
+			if ($query->row_array()) $this->template_type = $query->row_array()['nilai'];
+		} catch (\Throwable $th) {
+			//throw $th;
+		}
 		$this->load->library('plugin');
 	}
 }

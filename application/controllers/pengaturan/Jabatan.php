@@ -3,8 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Jabatan extends Render_Controller
 {
-
-
 	public function index()
 	{
 		// Page Settings

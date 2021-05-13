@@ -9,7 +9,8 @@
 |
 */
 
-$config['app_name'] 		= 'Your App Name';
+$config['app_name'] = 'Your App Name';
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ $config['app_name'] 		= 'Your App Name';
 |
 */
 
-$config['copyright'] 		= '';
+$config['copyright'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ $config['copyright'] 		= '';
 |
 | smart-rtl
 |
-| minified 			| sidebar |
+| minified| sidebar |
 |
 | menu-on-top
 |
@@ -48,11 +49,11 @@ $config['copyright'] 		= '';
 |
 | Example
 |
-| $config['page_setting'] 	= 'fixed-navigation menu-on-top fixed-header';
+| $config['page_setting'] = 'fixed-navigation menu-on-top fixed-header';
 |
 */
 
-$config['page_setting'] 	= '';
+$config['page_setting'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -60,21 +61,21 @@ $config['page_setting'] 	= '';
 |--------------------------------------------------------------------------
 |
 | 0 - 6
-| 
+|
 | 0 - Default
-| 
+|
 | 1 - Dark elegance
 |
 | 2 - Ultra light
-| 
+|
 | 3 - Google
-| 
+|
 | 4 - Pixel smash
-| 
+|
 | 5 - Glass
-| 
+|
 | 6 - Material designs
 |
 */
 
-$config['template_type'] 	= 6;
+$config['template_type'] = "";
