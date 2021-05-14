@@ -264,6 +264,21 @@ $(() => {
 
 
 		},
+		spk: {
+			simpan(id_user, masa_kerja, kinerja, prilaku) {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>/spk/inputnilai/simpan',
+					data:
+					{
+						id_user: id_user,
+						masa_kerja: masa_kerja,
+						kinerja: kinerja,
+						prilaku: prilaku,
+					}
+				})
+			},
+		},
 		format:
 		{
 
