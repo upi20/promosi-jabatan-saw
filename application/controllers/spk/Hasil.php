@@ -5,7 +5,6 @@ class Hasil extends Render_Controller
 {
 	public function index()
 	{
-		$this->hasil->hitung();
 		// Page Settings
 		$this->title 					= 'Hitung Hasil';
 		$this->content 					= 'spk-hasil';

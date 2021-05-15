@@ -7,7 +7,12 @@ $(() => {
 		.draw()
 	let tbl = $('.tabel');
 	for (let i = 0; i < tbl.length; i++) {
-		$(tbl[i]).DataTable();
+		$(tbl[i]).DataTable({
+			dom: 'Bfrtip',
+			buttons: [
+				'copy', 'csv', 'excel', 'pdf', 'print'
+			]
+		});
 	}
 
 	$("#OkCheck").click(() => {
