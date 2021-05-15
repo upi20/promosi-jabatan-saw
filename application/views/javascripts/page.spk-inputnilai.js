@@ -23,16 +23,49 @@ $(() => {
 		let masa_kerja = $("#masa_kerja").val();
 		let kinerja = $("#kinerja").val();
 		let prilaku = $("#prilaku").val();
-		window.apiClient.spk.simpan(id_user, masa_kerja, kinerja, prilaku)
+		if (id_user) {
+			$(ev.target[6]).attr("disabled", "")
+			window.apiClient.spk.simpan(id_user, masa_kerja, kinerja, prilaku)
+				.done((data) => {
+					$.doneMessage('Berhasil diubah.', 'SPK Input Nilai')
+					editRow(data.id_user, data)
+					$(ev.target[6]).removeAttr("disabled")
+				})
+				.fail(($xhr) => {
+					$(ev.target[6]).removeAttr("disabled")
+					$.failMessage('Gagal diubah.', 'SPK Input Nilai')
+				})
+		} else {
+			$.failMessage('Gagal diubah. Pilih Karyawan terlebih dahulu', 'SPK Input Nilai')
+		}
+	})
+
+	$("#OkCheck").click(() => {
+		window.apiClient.spk.buka_kunci()
 			.done((data) => {
-				$.doneMessage('Berhasil diubah.', 'SPK Input Nilai')
-				editRow(data.id_user, data)
+				$("#btn-simpan").removeAttr("disabled");
+				$.doneMessage('Berhasil, kunci dilepas dan pengumuman ditarik.', 'SPK Input Nilai')
+				window.apiClient.spk.reset()
+					.done((data) => {
+						$("#btn-simpan").removeAttr("disabled");
+						$.doneMessage('Berhasil, Reset data nilai karyawan', 'SPK Input Nilai')
+						setTimeout(function () {
+							location.reload();
+						}, 1000)
+					})
+					.fail(($xhr) => {
+						$("#btn-lepas").removeAttr("disabled");
+						$("#btn-simpan").attr("disabled", "");
+						$.failMessage('Gagal, Reset data nilai karyawan', 'SPK Input Nilai')
+					})
 			})
 			.fail(($xhr) => {
-				$.failMessage('Gagal diubah.', 'SPK Input Nilai')
+				$("#btn-lepas").removeAttr("disabled");
+				$("#btn-simpan").attr("disabled", "");
+				$.failMessage('Gagal, kunci dilepas dan pengumuman ditarik.', 'SPK Input Nilai')
 			})
-
-	})
+		$('#ModalCheck').modal('toggle')
+	});
 })
 
 // Click Ubah
@@ -43,4 +76,11 @@ const Ubah = (data) => {
 	$("#kinerja").val(data.dataset.kinerja);
 	$("#prilaku").val(data.dataset.prilaku);
 	$("#masa_kerja").focus();
+}
+
+const reset_data = () => {
+	$("#idCheck").val(1)
+	$("#LabelCheck").text('Reset Data Nilai')
+	$("#ContentCheck").text('Apakah anda yakin akan menghapus semua data nilai ?')
+	$('#ModalCheck').modal('toggle')
 }

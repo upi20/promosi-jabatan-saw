@@ -1,5 +1,0 @@
-30-04-2021
-	- Penentuan list tipe/level pengguna aplikasi
-	- Membuat crud divisi
-	- Membuat Manajer divisi
-	- Menambahkan semua user aplikasi

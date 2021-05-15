@@ -17,3 +17,12 @@ Perhitungan SPK
 4. Buat fungsi modular untuk perhitungan spk supaya bisa digunakan berkali kali di pengumuman dan perhitungan Manajer
 5. buat fungsi kunci untuk beberapa menu tadi.
 6. Buat dashboard untuk 3 level, administrator, karyawan dan Manajer.
+
+
+INSERT INTO `nilai` (`id`, `id_user`, `masa_kerja`, `kinerja`, `prilaku`) VALUES
+(1, 115, 2, 5.3, 4.92),
+(2, 116, 3, 4.8, 5),
+(3, 119, 2, 4.68, 4.83),
+(4, 117, 2, 4.9, 4.83),
+(7, 118, 2, 5.07, 4.83),
+(8, 121, 5, 5, 5);

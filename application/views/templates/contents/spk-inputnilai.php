@@ -51,49 +51,56 @@
 
 						<!-- widget content -->
 						<div class="widget-body">
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="form-group">
-										<label for="inp_id_user">Nomor Pegawai</label>
-										<input type="text" readonly class="form-control" placeholder="Nomor Pegawai" id="inp_id_user" required>
+							<?php if ($status) : ?>
+								<div class="text-center">
+									<h3>Input Nilai Karyawan Dikunci</h3>
+									<p>Inputan bisa dibuka di menu SPK -> Hitung hasil -> Tomobl (Lepas Kunci Dan tarik Pengumuman)</p>
+								</div>
+							<?php else : ?>
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="form-group">
+											<label for="inp_id_user">Nomor Pegawai</label>
+											<input type="text" readonly class="form-control" placeholder="Nomor Pegawai" id="inp_id_user" required>
+										</div>
+										<div class="form-group">
+											<label for="inp_user_nama">Nama Pegawai</label>
+											<input type="text" readonly class="form-control" placeholder="Nama Pegawain" id="inp_user_nama" required>
+										</div>
 									</div>
-									<div class="form-group">
-										<label for="inp_user_nama">Nama Pegawai</label>
-										<input type="text" readonly class="form-control" placeholder="Nama Pegawain" id="inp_user_nama" required>
+									<div class="col-lg-6">
+										<form action="" id="inp_data">
+											<label for="masa_kerja">Nilai Kriteria Masa Kerja</label>
+											<div class="input-group">
+												<input type="number" class="form-control" placeholder="Masa Kerja satuan tahun" id="masa_kerja" min="2" required>
+												<span class="input-group-btn">
+													<button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalMasaKerja">Info</button>
+												</span>
+											</div>
+											<label for="kinerja">Nilai Kriteria Penilaian Kinerja</label>
+											<div class="input-group">
+												<input type="number" class="form-control" placeholder="Kinerja nilai 1 s/d 6" id="kinerja" max="6" min="1" required step="0.01">
+												<span class="input-group-btn">
+													<button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalKinerja">Info</button>
+												</span>
+											</div>
+											<label for="prilaku">Nilai Kriteria Penilaian Prilaku</label>
+											<div class="input-group">
+												<input type="number" class="form-control" placeholder="Prilaku  nilai 1 s/d 6" id="prilaku" max="6" min="1" required step="0.01">
+												<span class="input-group-btn">
+													<button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalPrilaku">Info</button>
+												</span>
+											</div>
+											<br>
+											<div class="pull-right">
+												<button class="btn btn-primary btn-sm" type="submit">
+													Simpan
+												</button>
+											</div>
+										</form>
 									</div>
 								</div>
-								<div class="col-lg-6">
-									<form action="" id="inp_data">
-										<label for="masa_kerja">Nilai Kriteria Masa Kerja</label>
-										<div class="input-group">
-											<input type="number" class="form-control" placeholder="Masa Kerja satuan tahun" id="masa_kerja" min="2" required>
-											<span class="input-group-btn">
-												<button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalMasaKerja">Info</button>
-											</span>
-										</div>
-										<label for="kinerja">Nilai Kriteria Penilaian Kinerja</label>
-										<div class="input-group">
-											<input type="number" class="form-control" placeholder="Kinerja nilai 1 s/d 6" id="kinerja" max="6" min="1" required step="0.01">
-											<span class="input-group-btn">
-												<button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalKinerja">Info</button>
-											</span>
-										</div>
-										<label for="prilaku">Nilai Kriteria Penilaian Prilaku</label>
-										<div class="input-group">
-											<input type="number" class="form-control" placeholder="Prilaku  nilai 1 s/d 6" id="prilaku" max="6" min="1" required step="0.01">
-											<span class="input-group-btn">
-												<button class="btn btn-default" type="button" data-toggle="modal" data-target="#modalPrilaku">Info</button>
-											</span>
-										</div>
-										<br>
-										<div class="pull-right">
-											<button class="btn btn-primary btn-sm" type="submit">
-												Simpan
-											</button>
-										</div>
-									</form>
-								</div>
-							</div>
+							<?php endif; ?>
 						</div>
 						<!-- end widget content -->
 
@@ -138,7 +145,9 @@
 										<th data-class="expand"><i class="fa fa-fw fa-star-half-o text-muted hidden-md hidden-sm hidden-xs"></i> Masa Kerja</th>
 										<th data-class="expand"><i class="fa fa-fw fa-star-half-o text-muted hidden-md hidden-sm hidden-xs"></i> Kinerja</th>
 										<th data-class="expand"><i class="fa fa-fw fa-star-half-o text-muted hidden-md hidden-sm hidden-xs"></i> Prilaku</th>
-										<th><i class="fa fa-fw fa-thumb-tack text-muted hidden-md hidden-sm hidden-xs"></i>Aksi</th>
+										<?php if (!$status) : ?>
+											<th><i class="fa fa-fw fa-thumb-tack text-muted hidden-md hidden-sm hidden-xs"></i>Aksi</th>
+										<?php endif; ?>
 									</tr>
 								</thead>
 								<tbody>
@@ -150,17 +159,23 @@
 											<td style="text-align:right"><?= $q['masa_kerja'] ? $q['masa_kerja'] . " Tahun" : "" ?></td>
 											<td><?= $q['kinerja'] ?></td>
 											<td><?= $q['prilaku'] ?></td>
-											<td>
-												<div>
-													<button class="btn btn-primary btn-sm" data-id="<?= $q['user_id'] ?>" data-nama="<?= $q['user_nama'] ?>" data-masa_kerja="<?= $q['masa_kerja'] ?>" data-kinerja="<?= $q['kinerja'] ?>" data-prilaku="<?= $q['prilaku'] ?>" onclick="Ubah(this)">
-														<i class="fa fa-edit"></i> Ubah Nilai
-													</button>
-												</div>
-											</td>
+											<?php if (!$status) : ?>
+												<td>
+													<div>
+														<button class="btn btn-primary btn-sm" data-id="<?= $q['user_id'] ?>" data-nama="<?= $q['user_nama'] ?>" data-masa_kerja="<?= $q['masa_kerja'] ?>" data-kinerja="<?= $q['kinerja'] ?>" data-prilaku="<?= $q['prilaku'] ?>" onclick="Ubah(this)">
+															<i class="fa fa-edit"></i> Ubah Nilai
+														</button>
+													</div>
+												</td>
+											<?php endif; ?>
 										</tr>
 									<?php endforeach; ?>
 								</tbody>
 							</table>
+							<br>
+							<div class="text-center">
+								<button type="button" class="btn btn-danger" onclick="reset_data()">Reset Data Nilai</button>
+							</div>
 						</div>
 						<!-- end widget content -->
 
@@ -380,10 +395,3 @@
 		</div>
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
-
-
-<script>
-	const ___base_url = "<?= base_url() ?>";
-</script>

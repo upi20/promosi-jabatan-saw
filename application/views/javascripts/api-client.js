@@ -278,6 +278,24 @@ $(() => {
 					}
 				})
 			},
+			buka_kunci() {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>/spk/hasil/buka',
+				})
+			},
+			simpan_kunci() {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>/spk/hasil/simpan',
+				})
+			},
+			reset() {
+				return $.ajax({
+					method: 'post',
+					url: '<?= base_url() ?>/spk/hasil/reset',
+				})
+			}
 		},
 		format:
 		{
